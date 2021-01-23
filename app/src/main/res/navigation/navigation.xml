@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/fragment_gallery">
+
+    <fragment
+        android:id="@+id/fragment_gallery"
+        android:name="com.gokul.gallery.FragmentGallery"
+        android:label="fragment_gallery"
+        tools:layout="@layout/fragment_gallery" >
+        <action
+            android:id="@+id/action_fragment_gallery_to_detailed_fragment"
+            app:destination="@id/detailed_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailed_fragment"
+        android:name="com.gokul.gallery.view.fragments.DetailedFragment"
+        android:label="fragment_detailed"
+        tools:layout="@layout/fragment_detailed" >
+        <action
+            android:id="@+id/action_detailed_fragment_to_fragment_gallery"
+            app:destination="@id/fragment_gallery" />
+        <argument
+            android:name="detailedFragment"
+            app:argType="com.gokul.gallery.model.UnSplashModel" />
+    </fragment>
+</navigation>

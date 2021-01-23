@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Gallery</string>
+    <string name="search">search</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="error_text">Result couldn\'t be loaded</string>
+    <string name="results_not_found">Results Not Found for this Query</string>
+    <string name="retry">Retry</string>
+</resources>
