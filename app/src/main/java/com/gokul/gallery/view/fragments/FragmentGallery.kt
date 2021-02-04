@@ -35,6 +35,7 @@ class FragmentGallery : Fragment(R.layout.fragment_gallery), UnSplashAdapter.onI
         val search = menu.findItem(R.id.search)
         val searchItem = search.actionView as? SearchView
         searchItem?.isSubmitButtonEnabled = true
+        searchItem?.maxWidth=Integer.MAX_VALUE
         searchItem?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query != null) {
