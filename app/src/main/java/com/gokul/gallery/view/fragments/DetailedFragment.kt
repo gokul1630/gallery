@@ -27,33 +27,33 @@ class DetailedFragment : Fragment(R.layout.fragment_detailed) {
         val photo = args.detailedFragment
         binding.apply {
             Glide.with(this@DetailedFragment)
-                .load(photo.urls.regular)
-                .error(R.drawable.ic_error)
-                .listener(object : RequestListener<Drawable> {
-                    override fun onLoadFailed(
-                        e: GlideException?,
-                        model: Any?,
-                        target: Target<Drawable>?,
-                        isFirstResource: Boolean
-                    ): Boolean {
-                        progressBar.isVisible = false
-                        return false
-                    }
+                    .load(photo.urls.regular)
+                    .error(R.drawable.ic_error)
+                    .listener(object : RequestListener<Drawable> {
+                        override fun onLoadFailed(
+                                e: GlideException?,
+                                model: Any?,
+                                target: Target<Drawable>?,
+                                isFirstResource: Boolean
+                        ): Boolean {
+                            progressBar.isVisible = false
+                            return false
+                        }
 
-                    override fun onResourceReady(
-                        resource: Drawable?,
-                        model: Any?,
-                        target: Target<Drawable>?,
-                        dataSource: DataSource?,
-                        isFirstResource: Boolean
-                    ): Boolean {
-                        tvDescription.isVisible = photo.description != null
-                        tvCreator.isVisible = true
-                        progressBar.isVisible = false
-                        return false
-                    }
-                })
-                .into(binding.detailedImageView)
+                        override fun onResourceReady(
+                                resource: Drawable?,
+                                model: Any?,
+                                target: Target<Drawable>?,
+                                dataSource: DataSource?,
+                                isFirstResource: Boolean
+                        ): Boolean {
+                            tvDescription.isVisible = photo.description != null
+                            tvCreator.isVisible = true
+                            progressBar.isVisible = false
+                            return false
+                        }
+                    })
+                    .into(binding.detailedImageView)
             tvCreator.apply {
                 text = photo.user.name
                 paint.isUnderlineText = true

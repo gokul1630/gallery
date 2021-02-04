@@ -10,13 +10,13 @@ import javax.inject.Singleton
 
 @Singleton
 class UnSplashRepo @Inject constructor(private val unSplashApi: UnSplashApi) {
-    fun getSearchResults(query:String)=
-       Pager(
-           config = PagingConfig(
-               pageSize = 10,
-               maxSize = 100,
-               enablePlaceholders = false
-           ),
-           pagingSourceFactory = { UnSplashPagingSource(unSplashApi,query) }
-       ).liveData
+    fun getSearchResults(query: String) =
+            Pager(
+                    config = PagingConfig(
+                            pageSize = 10,
+                            maxSize = 100,
+                            enablePlaceholders = false
+                    ),
+                    pagingSourceFactory = { UnSplashPagingSource(unSplashApi, query) }
+            ).liveData
 }

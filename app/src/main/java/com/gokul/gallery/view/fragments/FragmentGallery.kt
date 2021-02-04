@@ -28,6 +28,7 @@ class FragmentGallery : Fragment(R.layout.fragment_gallery), UnSplashAdapter.onI
     private val viewModel by viewModels<UnSplashViewModel>()
     private var _binder: FragmentGalleryBinding? = null
     private val binding get() = _binder
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
 
@@ -35,7 +36,7 @@ class FragmentGallery : Fragment(R.layout.fragment_gallery), UnSplashAdapter.onI
         val search = menu.findItem(R.id.search)
         val searchItem = search.actionView as? SearchView
         searchItem?.isSubmitButtonEnabled = true
-        searchItem?.maxWidth=Integer.MAX_VALUE
+        searchItem?.maxWidth = Integer.MAX_VALUE
         searchItem?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query != null) {
@@ -78,18 +79,16 @@ class FragmentGallery : Fragment(R.layout.fragment_gallery), UnSplashAdapter.onI
             }
         }
         binding?.apply {
-            buttonRetry.setOnClickListener {
-                adapter.refresh()
-            }
-        }
-        binding?.apply {
             recyclerView.itemAnimator = null
             recyclerView.adapter = adapter.withLoadStateHeaderAndFooter(
-                footer = UnSplashHeaderFooterAdapter { adapter.refresh() },
-                header = UnSplashHeaderFooterAdapter { adapter.refresh() }
+                    footer = UnSplashHeaderFooterAdapter { adapter.refresh() },
+                    header = UnSplashHeaderFooterAdapter { adapter.refresh() }
             )
             recyclerView.layoutManager = LinearLayoutManager(root.context)
             recyclerView.setHasFixedSize(true)
+            buttonRetry.setOnClickListener {
+                adapter.refresh()
+            }
         }
         setHasOptionsMenu(true)
     }
@@ -106,8 +105,8 @@ class FragmentGallery : Fragment(R.layout.fragment_gallery), UnSplashAdapter.onI
         manager.setTitle("Gallery")
         manager.setDescription("Downloading Image please wait...")
         manager.setDestinationInExternalPublicDir(
-            Environment.DIRECTORY_DOWNLOADS,
-            "${photo.user.name}_${System.currentTimeMillis()}.jpg"
+                Environment.DIRECTORY_DOWNLOADS,
+                "${photo.user.name}_${System.currentTimeMillis()}.jpg"
         )
         manager.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
         val request = binding!!.root.context.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager

@@ -10,16 +10,17 @@ import com.gokul.gallery.repository.UnSplashRepo
 import kotlin.random.Random
 
 
-class UnSplashViewModel @ViewModelInject constructor(private val unSplashRepo: UnSplashRepo):ViewModel() {
-    private val list= listOf("dogs","cats","pugs","pug","rog","space","tech","flowers","animals")
-    private val random= Random.nextInt(list.size)
-    private val DEFAULT_QUERY=list[random]
-    private var currentQuery=MutableLiveData(DEFAULT_QUERY)
-    fun searchPhotos(query:String){
-        currentQuery.value=query
+class UnSplashViewModel @ViewModelInject constructor(private val unSplashRepo: UnSplashRepo) : ViewModel() {
+    private val list = listOf("dogs", "cats", "pugs", "pug", "rog", "space", "tech", "flowers", "animals")
+    private val random = Random.nextInt(list.size)
+    private val DEFAULT_QUERY = list[random]
+    private var currentQuery = MutableLiveData(DEFAULT_QUERY)
+    fun searchPhotos(query: String) {
+        currentQuery.value = query
 
     }
-    val photos=currentQuery.switchMap {queryString->
+
+    val photos = currentQuery.switchMap { queryString ->
         unSplashRepo.getSearchResults(queryString).cachedIn(viewModelScope)
     }
 }
